@@ -1,0 +1,55 @@
+{
+  "name": "restapi",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "sunil meka",
+  "license": "MIT",
+  "scripts": {
+    "generate": "rimraf dist && openapi-generator-plus -c config.yaml",
+    "dev": "nodemon src/index.ts",
+    "build": "rimraf build && tsc",
+    "start": "node build/src/index.js"
+  },
+  "engines": {
+    "node": "16"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "kafkajs": "^2.2.3",
+    "morgan": "^1.10.0",
+    "nats": "^2.9.0",
+    "openapi-generator-plus": "^2.6.0",
+    "passport": "^0.6.0",
+    "passport-http-bearer": "^1.0.1",
+    "passport-strategy": "^1.0.0",
+    "swagger-ui-express": "^4.5.0",
+    "text-encoding": "^0.7.0",
+    "uuid": "^9.0.0",
+    "yamljs": "^0.3.0"
+  },
+  "devDependencies": {
+    "@openapi-generator-plus/typescript-express-passport-server-generator": "^2.6.0",
+    "@tsconfig/node16": "^1.0.3",
+    "@types/cors": "^2.8.12",
+    "@types/express": "^4.17.14",
+    "@types/express-session": "^1.17.5",
+    "@types/morgan": "^1.9.3",
+    "@types/node": "^18.11.0",
+    "@types/passport": "^1.0.11",
+    "@types/passport-http-bearer": "^1.0.37",
+    "@types/passport-strategy": "^0.2.35",
+    "@types/swagger-ui-express": "^4.1.3",
+    "@types/text-encoding": "^0.0.36",
+    "@types/uuid": "^9.0.0",
+    "@types/yamljs": "^0.2.31",
+    "@typescript-eslint/eslint-plugin": "^5.40.0",
+    "@typescript-eslint/parser": "^5.40.0",
+    "eslint": "^8.25.0",
+    "nodemon": "^2.0.20",
+    "rimraf": "^3.0.2",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.8.4"
+  }
+}

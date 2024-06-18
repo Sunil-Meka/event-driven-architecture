@@ -1,0 +1,160 @@
+openapi: 3.0.0
+info:
+  title: rest api
+  description: rest api
+  version: 0.0.1
+
+
+paths:
+  /users/getAll:
+    get:
+      tags:
+        - users
+      responses:
+        "200":
+          description: successful operation
+          content: 
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+        "404":
+          description: not found
+          $ref: "#/components/responses/NotFound"
+  /users/get:
+    get:
+      tags:
+        - users
+      parameters:
+        - name: id
+          in: query
+          description: user id to get 
+          schema:
+            type: string
+          required: true
+      responses:
+        "200":
+          description: successful
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        "404":
+          description: not found
+          $ref: "#/components/responses/NotFound"
+    
+  /users/create:
+    post:
+      tags: 
+        - users
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+        required: true
+      responses:
+        "200":
+          description: created successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        "400":
+          description: failed to created
+          $ref: "#/components/responses/Failed"
+
+  /users/update:
+    put:
+      tags: 
+        - users
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+        required: true
+      responses:
+        "200":
+          description: created successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        "400":
+          description: failed to created
+          $ref: "#/components/responses/Failed"
+
+  /users/delete:
+    delete:
+      tags: 
+        - users
+      parameters:
+        - name: id
+          in: query
+          description: id to delete
+          schema:
+            type: string
+          required: true
+      responses:
+        "200":
+          description: deleted the user
+          $ref: "#/components/responses/Success"
+        "400":
+          description: failed to update
+          $ref: "#/components/responses/Failed"
+
+components:
+  responses:
+    NotFound:
+      description: resource not found
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Message" 
+    Success:
+      description: operation success
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Message" 
+    Failed:
+      description: operation failed
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Message" 
+  parameters:
+    limit: 
+      name: limit
+      in: query
+      schema:
+        type: integer
+      required: false
+  schemas:
+    Message:
+      type: object
+      properties:
+        message: 
+          type: string
+      required:
+        - "message"
+    User: 
+      type: object
+      properties:
+        id: 
+          type: string
+        name: 
+          type: string
+        dob: 
+          type: string
+        gender: 
+          type: string
+          enum:
+            - "male"
+            - "female" 
+        phoneNumber: 
+          type: string
+        isExist: 
+          type: boolean
